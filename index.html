@@ -162,7 +162,8 @@ details.more li{margin:4px 0}
 .flow span.node{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 10px;color:var(--ink)}
 .flow span.arrow{color:var(--signal)}
 .flow-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
-.githubcard{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;border-style:dashed}
+.githubcard{grid-column:1/-1;justify-self:center;width:100%;max-width:560px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-style:dashed}
+.githubcard:hover{transform:none}
 
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -236,7 +237,7 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.88rem}
 
 <header class="nav" id="header">
   <div class="wrap">
-    <a class="brand" href="#top">Jayanth<span>.</span></a>
+    <a class="brand" href="#top">Tippana Jayanth<span>.</span></a>
     <nav class="links" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
@@ -295,12 +296,7 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.88rem}
         </div>
       </div>
 
-      <div class="stats" role="list">
-        <div class="stat" role="listitem"><b>5</b><span>projects on GitHub, from web apps to ML to DevOps</span></div>
-        <div class="stat" role="listitem"><b>99.9%</b><span>botnet detection accuracy across 9 IoT devices</span></div>
-        <div class="stat" role="listitem"><b>13</b><span>REST endpoints in my full-stack watchlist app</span></div>
-        <div class="stat" role="listitem"><b>5</b><span>certificates across AI, DevOps, security and cloud</span></div>
-      </div>
+      
     </div>
   </section>
 
