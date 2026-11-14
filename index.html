@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tippana Jayanth Portfolio</title>
-<meta name="description" content="Tippana Jayanth, computer science undergraduate and aspiring software engineer at VIT-AP. Full-stack, machine learning, DevOps and cloud projects.">
+<meta name="description" content="Tippana Jayanth, computer science undergraduate, AI/ML engineer and software developer at VIT-AP. Machine learning, full-stack, DevOps and cloud projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -82,14 +82,11 @@ header.nav.is-hidden{transform:translateY(-105%);opacity:0;pointer-events:none}
 .mobile a[aria-current="true"]{color:var(--accent)}
 @media (max-width:820px){.links{display:none}.burger{display:grid}}
 
-/* bottom dock: appears only while scrolling */
-.dock{position:fixed;left:50%;bottom:22px;z-index:45;transform:translate(-50%,30px);opacity:0;pointer-events:none;display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .3s ease}
-.dock.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
-.dock .pct{font-family:var(--mono);font-size:.78rem;color:var(--muted);padding:0 12px;min-width:56px;text-align:center;font-variant-numeric:tabular-nums}
-.dock button,.dock a{font:inherit;font-size:.86rem;font-weight:600;border:0;cursor:pointer;text-decoration:none;border-radius:999px;padding:9px 16px;background:transparent;color:var(--ink);transition:background .2s,color .2s}
-.dock button:hover{background:var(--bg-alt)}
-.dock a{background:var(--accent);color:var(--on-accent)}
-.dock a:hover{filter:brightness(1.08)}
+/* back-to-top button */
+.totop{position:fixed;right:24px;bottom:24px;z-index:45;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--accent);color:var(--on-accent);cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s ease,transform .3s ease,filter .2s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{filter:brightness(1.1);transform:translateY(-3px)}
+.totop svg{width:20px;height:20px}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:.94rem;border-radius:999px;padding:11px 22px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-family:var(--body);color:var(--ink);transition:transform .2s,box-shadow .2s,border-color .2s,background .2s}
@@ -107,15 +104,19 @@ header.nav.is-hidden{transform:translateY(-105%);opacity:0;pointer-events:none}
 .status{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;margin:0 0 24px}
 .status i{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hero h1{font-size:clamp(2.6rem,7vw,4.5rem);font-weight:800;letter-spacing:-.03em}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.08}
+.hero h1 em{display:block}
+.stats{display:flex;flex-wrap:wrap;gap:20px 40px;margin-top:40px}
+.stats b{display:block;font-family:var(--display);font-size:1.7rem;font-weight:800;line-height:1.1}
+.stats span{font-size:.88rem;color:var(--muted)}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .role{font-family:var(--mono);font-size:.88rem;color:var(--muted);margin:18px 0 0;letter-spacing:.04em}
 .hero .lead{font-size:1.14rem;color:var(--muted);max-width:58ch;margin:16px 0 0}
 .where{margin:16px 0 0;color:var(--muted);font-size:.92rem}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.photo-wrap{justify-self:center;position:relative;width:min(300px,100%)}
-.photo-wrap::before{content:"";position:absolute;inset:-16px;border:1px solid var(--line);border-radius:30px;transform:rotate(3deg)}
-.photo{position:relative;aspect-ratio:4/5;border-radius:22px;border:1px solid var(--line);background:var(--surface);overflow:hidden;box-shadow:14px 14px 0 var(--accent-soft),var(--shadow);animation:float 6s ease-in-out infinite}
+.photo-wrap{justify-self:center;position:relative;width:min(340px,100%)}
+.photo-wrap::before{content:"";position:absolute;inset:-22px;border:1px dashed var(--line-strong,var(--line));border-radius:34px}
+.photo{position:relative;aspect-ratio:1/1;border-radius:26px;border:2px solid var(--accent);background:var(--surface);overflow:hidden;box-shadow:0 0 36px color-mix(in srgb,var(--accent) 28%,transparent)}
 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
 .photo .initials{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:5rem;color:var(--accent)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
@@ -231,27 +232,36 @@ details.more li{margin:4px 0}
 .btn.ghost:hover,.btn.light:hover{border-color:#fff;background:rgba(255,255,255,.16)}
 .btn.light:hover{background:#eef3ff}
 .connect-band{padding:0 0 0}
-footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+footer{padding:40px 0;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
+footer .row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .brand{font-family:var(--display);font-weight:800;font-size:1.3rem;color:var(--ink)}
+footer .brand em{font-style:normal;color:var(--accent)}
+footer .soc{display:flex;gap:10px}
+footer .soc a{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;color:var(--muted);transition:color .2s,background .2s,transform .2s}
+footer .soc a:hover{color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+footer .soc svg{width:22px;height:22px}
+@media(max-width:700px){footer .row{justify-content:center;text-align:center}}
 .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:999px;font-size:.88rem;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:200;max-width:calc(100vw - 32px)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media (max-width:820px){
   .hero{padding:104px 0 56px}
   .hero .grid{grid-template-columns:1fr;gap:34px}
-  .photo-wrap{order:-1;width:min(230px,70%);justify-self:start}
+  .photo-wrap::before{inset:-10px}
+  .photo-wrap{order:-1;margin:10px;width:min(230px,70%);justify-self:start}
   .backdrop svg{right:-300px}
   .about-grid{grid-template-columns:1fr}
   .cards,.card.featured{grid-template-columns:1fr}
   .skills{grid-template-columns:1fr}
   .certs{grid-template-columns:1fr}
   .connect{padding:42px 20px}
-  .dock{bottom:14px}
+  .totop{right:16px;bottom:16px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .photo,.status i{animation:none}
   .reveal{transform:none;transition:none}
-  header.nav,.dock,.card,.cert,.btn,.pills li,.icon-btn,.fact,.skill,.edu-item,.sec-head h2::after{transition:none}
+  header.nav,.totop,.card,.cert,.btn,.pills li,.icon-btn,.fact,.skill,.edu-item,.sec-head h2::after{transition:none}
 }
 </style>
 </head>
@@ -302,14 +312,18 @@ footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px so
       <div class="grid">
         <div>
           <p class="status mono"><i aria-hidden="true"></i>Open to software engineering roles</p>
-          <h1>Tippana <em>Jayanth</em></h1>
-          <p class="role">Software engineering &middot; Full-stack &middot; ML &middot; DevOps</p>
-          <p class="lead">Computer science undergraduate and aspiring software engineer. I design and build software end to end, from REST APIs and React interfaces to machine learning pipelines and containerized deployments, on a foundation of data structures, algorithms and clean, maintainable code.</p>
-          <p class="where">Visakhapatnam, Andhra Pradesh, India &middot; B.Tech CSE, class of 2027</p>
+          <h1>Tippana Jayanth <em>AI/ML Engineer &amp; Software Developer</em></h1>
+          <p class="lead">Computer science undergraduate, AI/ML engineer and software developer. I build machine learning models and the software around them, from data pipelines and classifiers to REST APIs, React interfaces and containerized deployments, on a foundation of data structures, algorithms and clean, maintainable code.</p>
           <div class="cta">
             <a class="btn primary" href="#projects">View projects</a>
             <a class="btn" href="#contact">Get in touch</a>
             <a class="btn" href="https://github.com/Jayanth0000" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+          </div>
+          <div class="stats">
+            <div><b>7.75</b><span>CGPA</span></div>
+            <div><b>7</b><span>GitHub Repos</span></div>
+            <div><b>5</b><span>Certifications</span></div>
+            <div><b>Visakhapatnam</b><span>India</span></div>
           </div>
         </div>
         <div class="photo-wrap">
@@ -343,7 +357,7 @@ footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px so
         </div>
         <div class="facts">
           <div class="fact"><span class="mono">Education</span><b>B.Tech CSE</b><span class="n">VIT-AP &middot; CGPA 7.75 / 10</span></div>
-          <div class="fact"><span class="mono">Projects</span><b>6 repositories</b><span class="n">5 featured here: full-stack, ML, DevOps</span></div>
+          <div class="fact"><span class="mono">Projects</span><b>7 repositories</b><span class="n">5 featured here: ML, full-stack, DevOps</span></div>
           <div class="fact"><span class="mono">Certificates</span><b>5 earned</b><span class="n">GenAI, IBM, Google, AWS x2</span></div>
           <div class="fact"><span class="mono">Based in</span><b>Visakhapatnam</b><span class="n">Andhra Pradesh, India</span></div>
         </div>
@@ -363,34 +377,23 @@ footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px so
       </div>
 
       <div class="cards">
-        <article class="card featured" data-cat="web">
-          <div>
-            <div class="top"><h3>NextWatch</h3><span class="tag">Full-stack</span></div>
-            <p style="margin-top:12px">Track movies and shows, rate them, see which services stream them in India, and get recommendations from your top-rated titles.</p>
-            <div class="flow-label">Request path</div>
-            <div class="flow" aria-label="React client calls the Express API with JWT middleware, which reads MongoDB and the TMDB API">
-              <span class="node">React 18 + Vite</span><span class="arrow">&rarr;</span>
-              <span class="node">Express + JWT middleware</span><span class="arrow">&rarr;</span>
-              <span class="node">MongoDB</span><span class="arrow">&amp;</span>
-              <span class="node">TMDB proxy</span>
-            </div>
+
+        <article class="card" data-cat="ml">
+          <div class="top"><h3>Phishing Detection System</h3><span class="tag">NLP</span></div>
+          <p>An email classifier that pairs TF-IDF features with a Random Forest, plus a Gradio app where user corrections flow back into the training data.</p>
+          <div class="spec">
+            <div><b>10,000</b><span>labelled emails, split 80/20 for evaluation</span></div>
+            <div><b>3,000</b><span>TF-IDF features from cleaned email text</span></div>
           </div>
-          <div style="display:grid;gap:14px">
-            <div class="spec">
-              <div><b>6</b><span>pages: login, signup, dashboard, explore, for you, watchlist</span></div>
-              <div><b>13</b><span>REST API endpoints across auth, watchlist and explore</span></div>
-            </div>
-            <details class="more" open>
-              <summary>Key details</summary>
-              <ul>
-                <li>Light and dark theme on the React front end.</li>
-                <li>bcrypt-hashed passwords and JWT middleware on protected routes.</li>
-                <li>TMDB proxy on the server keeps the API key out of the browser.</li>
-              </ul>
-            </details>
-            <ul class="stack"><li>React</li><li>Express</li><li>MongoDB</li><li>Mongoose</li><li>JWT</li><li>TMDB API</li></ul>
-            <div class="links-row"><a href="https://github.com/Jayanth0000/NextWatch-Smart-Watchlist-OTT-Explorer" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
-          </div>
+          <details class="more" open>
+            <summary>Key details</summary>
+            <ul>
+              <li>Cleaning pipeline: lowercase, strip HTML, replace URLs, remove stopwords.</li>
+              <li>Feedback loop lets users correct predictions and retrain.</li>
+            </ul>
+          </details>
+          <ul class="stack"><li>Python</li><li>NLP</li><li>TF-IDF</li><li>Scikit-learn</li><li>Gradio</li></ul>
+          <div class="links-row"><a href="https://github.com/Jayanth0000/AI-Driven-Phishing-Detection-System-A-Hybrid-NLP-Approach" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
         </article>
 
         <article class="card" data-cat="ml">
@@ -409,24 +412,6 @@ footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px so
           </details>
           <ul class="stack"><li>Python</li><li>Scikit-learn</li><li>Random Forest</li><li>Pandas</li></ul>
           <div class="links-row"><a href="https://github.com/Jayanth0000/AI-Powered-Botnet-Detection-in-Virtual-Smart-Homes" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
-        </article>
-
-        <article class="card" data-cat="ml">
-          <div class="top"><h3>Phishing Detection System</h3><span class="tag">NLP</span></div>
-          <p>An email classifier that pairs TF-IDF features with a Random Forest, plus a Gradio app where user corrections flow back into the training data.</p>
-          <div class="spec">
-            <div><b>10,000</b><span>labelled emails, split 80/20 for evaluation</span></div>
-            <div><b>3,000</b><span>TF-IDF features from cleaned email text</span></div>
-          </div>
-          <details class="more" open>
-            <summary>Key details</summary>
-            <ul>
-              <li>Cleaning pipeline: lowercase, strip HTML, replace URLs, remove stopwords.</li>
-              <li>Feedback loop lets users correct predictions and retrain.</li>
-            </ul>
-          </details>
-          <ul class="stack"><li>Python</li><li>NLP</li><li>TF-IDF</li><li>Scikit-learn</li><li>Gradio</li></ul>
-          <div class="links-row"><a href="https://github.com/Jayanth0000/AI-Driven-Phishing-Detection-System-A-Hybrid-NLP-Approach" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
         </article>
 
         <article class="card" data-cat="ml web">
@@ -463,6 +448,35 @@ footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px so
           </details>
           <ul class="stack"><li>Jenkins</li><li>Docker</li><li>Kubernetes</li><li>Nagios</li><li>Grafana</li></ul>
           <div class="links-row"><a href="https://github.com/Jayanth0000/23BCE8392_Tippana_Jayanth_DevOps_Project" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
+        </article>
+        <article class="card featured" data-cat="web">
+          <div>
+            <div class="top"><h3>NextWatch</h3><span class="tag">Full-stack</span></div>
+            <p style="margin-top:12px">Track movies and shows, rate them, see which services stream them in India, and get recommendations from your top-rated titles.</p>
+            <div class="flow-label">Request path</div>
+            <div class="flow" aria-label="React client calls the Express API with JWT middleware, which reads MongoDB and the TMDB API">
+              <span class="node">React 18 + Vite</span><span class="arrow">&rarr;</span>
+              <span class="node">Express + JWT middleware</span><span class="arrow">&rarr;</span>
+              <span class="node">MongoDB</span><span class="arrow">&amp;</span>
+              <span class="node">TMDB proxy</span>
+            </div>
+          </div>
+          <div style="display:grid;gap:14px">
+            <div class="spec">
+              <div><b>6</b><span>pages: login, signup, dashboard, explore, for you, watchlist</span></div>
+              <div><b>13</b><span>REST API endpoints across auth, watchlist and explore</span></div>
+            </div>
+            <details class="more" open>
+              <summary>Key details</summary>
+              <ul>
+                <li>Light and dark theme on the React front end.</li>
+                <li>bcrypt-hashed passwords and JWT middleware on protected routes.</li>
+                <li>TMDB proxy on the server keeps the API key out of the browser.</li>
+              </ul>
+            </details>
+            <ul class="stack"><li>React</li><li>Express</li><li>MongoDB</li><li>Mongoose</li><li>JWT</li><li>TMDB API</li></ul>
+            <div class="links-row"><a href="https://github.com/Jayanth0000/NextWatch-Smart-Watchlist-OTT-Explorer" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
+          </div>
         </article>
 
         <article class="card githubcard" data-cat="all web ml devops">
@@ -555,14 +569,19 @@ footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px so
 </main>
 
 <footer>
-  <div class="wrap">&copy; 2026 Tippana Jayanth &middot; Visakhapatnam, Andhra Pradesh, India</div>
+  <div class="wrap row">
+    <div class="brand">Tippana <em>Jayanth</em></div>
+    <div>&copy; 2026 Tippana Jayanth. All rights reserved.</div>
+    <div class="soc">
+      <a href="https://github.com/Jayanth0000" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+      <a href="https://leetcode.com/u/3o54HkX53M/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg></a>
+      <a href="https://www.linkedin.com/in/tippana-jayanth-833bb1289" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="mailto:jayanthtippana@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+    </div>
+  </div>
 </footer>
 
-<nav class="dock" id="dock" aria-label="Quick actions">
-  <button type="button" id="toTop" aria-label="Back to top">&uarr; Top</button>
-  <span class="pct" id="pct" aria-hidden="true">0%</span>
-  <a href="#contact">Let's talk</a>
-</nav>
+<button type="button" class="totop" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></button>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -610,21 +629,20 @@ footer{padding:28px 0 96px;color:var(--muted);font-size:.88rem;border-top:1px so
   });
 
   // Top bar and bottom dock: visible while scrolling, tucked away when idle
-  var header=$('header'), bar=$('progress'), dock=$('dock'), pct=$('pct'), idle;
+  var header=$('header'), bar=$('progress'), tt=$('toTop'), idle;
   function hold(){ return header.matches(':hover') || header.contains(document.activeElement) || mobile.classList.contains('open'); }
   function reveal(){
     header.classList.remove('is-hidden');
     var h=document.documentElement.scrollHeight-window.innerHeight;
     var p=h>0?Math.min(1,window.scrollY/h):0;
     bar.style.transform='scaleX('+p+')';
-    pct.textContent=Math.round(p*100)+'%';
-    if(window.scrollY>120) dock.classList.add('show'); else dock.classList.remove('show');
     clearTimeout(idle);
     idle=setTimeout(function(){
-      dock.classList.remove('show');
       if(window.scrollY>80 && !hold()) header.classList.add('is-hidden');
     },1800);
   }
+  function tts(){ tt.classList.toggle('show',window.scrollY>400); }
+  window.addEventListener('scroll',tts,{passive:true}); tts();
   window.addEventListener('scroll',reveal,{passive:true});
   document.addEventListener('mousemove',function(e){ if(e.clientY<56 && window.scrollY>80) reveal(); },{passive:true});
   header.addEventListener('focusin',function(){ header.classList.remove('is-hidden'); });
