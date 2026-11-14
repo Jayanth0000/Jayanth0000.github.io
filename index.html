@@ -25,6 +25,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
   --on-accent:#ffffff;
   --accent-soft:#e9effc;
   --spot:rgba(36,87,214,.09);
+  --g1:#a9c4ff;--g2:#d4c2ff;--g3:#aeeede;--blob:.62;--dot:rgba(36,60,120,.16);
   --ok:#15803d;
   --shadow:0 1px 2px rgba(15,23,42,.05),0 14px 34px -20px rgba(15,23,42,.28);
   --display:"Manrope","Segoe UI",system-ui,sans-serif;
@@ -35,13 +36,13 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#0c1118;--bg-alt:#101722;--surface:#151d2b;--ink:#e7ecf5;--muted:#9aa8bf;--line:#243044;
-    --accent:#7aa7ff;--on-accent:#0a1226;--accent-soft:#182642;--spot:rgba(122,167,255,.12);--ok:#4ade80;
+    --accent:#7aa7ff;--on-accent:#0a1226;--accent-soft:#182642;--spot:rgba(122,167,255,.12);--g1:#2f5fe0;--g2:#6d3fd6;--g3:#0f9d93;--blob:.34;--dot:rgba(160,190,255,.14);--ok:#4ade80;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 38px -22px rgba(0,0,0,.8);color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0c1118;--bg-alt:#101722;--surface:#151d2b;--ink:#e7ecf5;--muted:#9aa8bf;--line:#243044;
-  --accent:#7aa7ff;--on-accent:#0a1226;--accent-soft:#182642;--spot:rgba(122,167,255,.12);--ok:#4ade80;
+  --accent:#7aa7ff;--on-accent:#0a1226;--accent-soft:#182642;--spot:rgba(122,167,255,.12);--g1:#2f5fe0;--g2:#6d3fd6;--g3:#0f9d93;--blob:.34;--dot:rgba(160,190,255,.14);--ok:#4ade80;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 38px -22px rgba(0,0,0,.8);color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -94,11 +95,17 @@ header.nav.is-hidden{transform:translateY(-105%);opacity:0;pointer-events:none}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.primary:hover{filter:brightness(1.07)}
 
+/* page background: soft aurora + dot grid, fixed behind everything */
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bg i{position:absolute;border-radius:50%;filter:blur(100px);opacity:var(--blob);will-change:transform}
+.bg .b1{width:680px;height:680px;left:-200px;top:-180px;background:var(--g1);animation:drift1 28s ease-in-out infinite alternate}
+.bg .b2{width:620px;height:620px;right:-220px;top:16%;background:var(--g2);animation:drift2 34s ease-in-out infinite alternate}
+.bg .b3{width:700px;height:700px;left:22%;bottom:-300px;background:var(--g3);animation:drift1 40s ease-in-out infinite alternate-reverse}
+.bg::after{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--dot) 1.1px,transparent 1.4px);background-size:28px 28px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 35%,#000 25%,transparent 90%);mask-image:radial-gradient(ellipse 80% 70% at 50% 35%,#000 25%,transparent 90%)}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(90px,70px) scale(1.12)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(-110px,60px) scale(1.08)}}
 /* hero */
-.hero{padding:132px 0 76px;position:relative;overflow:hidden;background:radial-gradient(900px 520px at 88% -8%,var(--accent-soft),transparent 62%)}
-.backdrop{position:absolute;inset:0;pointer-events:none;z-index:0;color:var(--accent)}
-.backdrop .grid-bg{position:absolute;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 60% 60% at 70% 30%,#000 10%,transparent 100%);mask-image:radial-gradient(ellipse 60% 60% at 70% 30%,#000 10%,transparent 100%);opacity:.55}
-.backdrop svg{position:absolute;right:-140px;top:-60px;width:760px;height:760px;max-width:none;opacity:.55}
+.hero{padding:132px 0 76px;position:relative;overflow:hidden}
 .hero .wrap{position:relative;z-index:1}
 .hero .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:56px;align-items:center}
 .status{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;margin:0 0 24px}
@@ -123,9 +130,9 @@ header.nav.is-hidden{transform:translateY(-105%);opacity:0;pointer-events:none}
 
 /* sections: calm bands that respond to the cursor */
 section.block{padding:84px 0;transition:background-color .35s ease}
-section.block.alt{background:var(--bg-alt)}
-section.block:hover{background:color-mix(in srgb,var(--accent) 3.5%,var(--bg))}
-section.block.alt:hover{background:color-mix(in srgb,var(--accent) 5%,var(--bg-alt))}
+section.block.alt{background:color-mix(in srgb,var(--bg-alt) 60%,transparent)}
+section.block:hover{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+section.block.alt:hover{background:color-mix(in srgb,var(--accent) 6%,color-mix(in srgb,var(--bg-alt) 60%,transparent))}
 .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:30px;flex-wrap:wrap}
 .sec-head h2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;position:relative;padding-bottom:10px}
 .sec-head h2::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:36px;border-radius:3px;background:var(--accent);transition:width .45s cubic-bezier(.4,0,.2,1)}
@@ -159,9 +166,10 @@ section.block:hover .sec-head .mono{color:var(--accent)}
 .chip:hover{border-color:var(--accent)}
 .chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow);transition:transform .25s,border-color .25s,box-shadow .25s}
+.card{background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow);transition:transform .25s,border-color .25s,box-shadow .25s}
 .card:hover{transform:translateY(-5px);border-color:var(--accent)}
-.card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.cards{grid-template-columns:1fr !important}
+.card.featured,.card.wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
 .card .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .card h3{font-size:1.4rem;font-weight:800}
 .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px;white-space:nowrap}
@@ -249,9 +257,8 @@ footer .soc svg{width:22px;height:22px}
   .hero .grid{grid-template-columns:1fr;gap:34px}
   .photo-wrap::before{inset:-10px}
   .photo-wrap{order:-1;margin:10px;width:min(230px,70%);justify-self:start}
-  .backdrop svg{right:-300px}
-  .about-grid{grid-template-columns:1fr}
-  .cards,.card.featured{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr}
+  .cards,.card.featured,.card.wide{grid-template-columns:1fr !important}
   .skills{grid-template-columns:1fr}
   .certs{grid-template-columns:1fr}
   .connect{padding:42px 20px}
@@ -259,13 +266,14 @@ footer .soc svg{width:22px;height:22px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .photo,.status i{animation:none}
+  .photo,.status i,.bg i{animation:none}
   .reveal{transform:none;transition:none}
   header.nav,.totop,.card,.cert,.btn,.pills li,.icon-btn,.fact,.skill,.edu-item,.sec-head h2::after{transition:none}
 }
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
 <a class="skip" href="#about">Skip to content</a>
 
 <header class="nav" id="header">
@@ -297,17 +305,6 @@ footer .soc svg{width:22px;height:22px}
 
 <main id="top">
   <section class="hero">
-    <div class="backdrop" aria-hidden="true">
-      <div class="grid-bg"></div>
-      <svg viewBox="0 0 760 760" fill="none" stroke="currentColor" stroke-width="1">
-        <circle cx="380" cy="380" r="120" opacity=".22"/>
-        <circle cx="380" cy="380" r="210" opacity=".17"/>
-        <circle cx="380" cy="380" r="300" opacity=".12"/>
-        <circle cx="380" cy="380" r="370" opacity=".07"/>
-        <circle cx="380" cy="380" r="5" fill="currentColor" stroke="none" opacity=".7"/>
-        <circle cx="640" cy="170" r="3.5" fill="currentColor" stroke="none" opacity=".5"/>
-      </svg>
-    </div>
     <div class="wrap">
       <div class="grid">
         <div>
@@ -378,77 +375,49 @@ footer .soc svg{width:22px;height:22px}
 
       <div class="cards">
 
-        <article class="card" data-cat="ml">
-          <div class="top"><h3>Phishing Detection System</h3><span class="tag">NLP</span></div>
-          <p>An email classifier that pairs TF-IDF features with a Random Forest, plus a Gradio app where user corrections flow back into the training data.</p>
-          <div class="spec">
-            <div><b>10,000</b><span>labelled emails, split 80/20 for evaluation</span></div>
-            <div><b>3,000</b><span>TF-IDF features from cleaned email text</span></div>
-          </div>
-          <details class="more" open>
-            <summary>Key details</summary>
-            <ul>
-              <li>Cleaning pipeline: lowercase, strip HTML, replace URLs, remove stopwords.</li>
-              <li>Feedback loop lets users correct predictions and retrain.</li>
-            </ul>
-          </details>
-          <ul class="stack"><li>Python</li><li>NLP</li><li>TF-IDF</li><li>Scikit-learn</li><li>Gradio</li></ul>
-          <div class="links-row"><a href="https://github.com/Jayanth0000/AI-Driven-Phishing-Detection-System-A-Hybrid-NLP-Approach" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
-        </article>
+        <article class="card wide" data-cat="ml"><div style="display:grid;gap:14px;align-content:start"><div class="top"><h3>Phishing Detection System</h3><span class="tag">NLP</span></div><p>An email classifier that pairs TF-IDF features with a Random Forest, plus a Gradio app where user corrections flow back into the training data.</p><ul class="stack"><li>Python</li><li>NLP</li><li>TF-IDF</li><li>Scikit-learn</li><li>Gradio</li></ul></div><div style="display:grid;gap:14px"><div class="spec">
+<div><b>10,000</b><span>labelled emails, split 80/20 for evaluation</span></div>
+<div><b>3,000</b><span>TF-IDF features from cleaned email text</span></div>
+</div><details class="more" open="">
+<summary>Key details</summary>
+<ul>
+<li>Cleaning pipeline: lowercase, strip HTML, replace URLs, remove stopwords.</li>
+<li>Feedback loop lets users correct predictions and retrain.</li>
+</ul>
+</details><div class="links-row"><a href="https://github.com/Jayanth0000/AI-Driven-Phishing-Detection-System-A-Hybrid-NLP-Approach" rel="noopener noreferrer" target="_blank">View code on GitHub →</a></div></div></article>
 
-        <article class="card" data-cat="ml">
-          <div class="top"><h3>IoT Botnet Detection</h3><span class="tag">ML</span></div>
-          <p>A lightweight, explainable detector for Mirai and Bashlite attack traffic in smart-home devices, small enough to run on a gateway.</p>
-          <div class="spec">
-            <div><b>99.9%</b><span>accuracy across 9 device profiles, tested on 90% of the data</span></div>
-            <div><b>3.5 &micro;s</b><span>inference time per packet for the Mirai model</span></div>
-          </div>
-          <details class="more" open>
-            <summary>Key details</summary>
-            <ul>
-              <li>Shallow Random Forests (10 trees, depth 2) on 115 traffic features.</li>
-              <li>Cross-malware test: each model scores about 50% on the other botnet family, so the two have distinct traffic signatures.</li>
-            </ul>
-          </details>
-          <ul class="stack"><li>Python</li><li>Scikit-learn</li><li>Random Forest</li><li>Pandas</li></ul>
-          <div class="links-row"><a href="https://github.com/Jayanth0000/AI-Powered-Botnet-Detection-in-Virtual-Smart-Homes" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
-        </article>
+        <article class="card wide" data-cat="ml"><div style="display:grid;gap:14px;align-content:start"><div class="top"><h3>IoT Botnet Detection</h3><span class="tag">ML</span></div><p>A lightweight, explainable detector for Mirai and Bashlite attack traffic in smart-home devices, small enough to run on a gateway.</p><ul class="stack"><li>Python</li><li>Scikit-learn</li><li>Random Forest</li><li>Pandas</li></ul></div><div style="display:grid;gap:14px"><div class="spec">
+<div><b>95%+</b><span>accuracy across 9 device profiles, tested on 90% of the data</span></div>
+<div><b>3.5 µs</b><span>inference time per packet for the Mirai model</span></div>
+</div><details class="more" open="">
+<summary>Key details</summary>
+<ul>
+<li>Shallow Random Forests (10 trees, depth 2) on 115 traffic features.</li>
+<li>Cross-malware test: each model scores about 50% on the other botnet family, so the two have distinct traffic signatures.</li>
+</ul>
+</details><div class="links-row"><a href="https://github.com/Jayanth0000/AI-Powered-Botnet-Detection-in-Virtual-Smart-Homes" rel="noopener noreferrer" target="_blank">View code on GitHub →</a></div></div></article>
 
-        <article class="card" data-cat="ml web">
-          <div class="top"><h3>Smart Resume Screener</h3><span class="tag">LLM</span></div>
-          <p>Upload PDF resumes, paste a job description, and get a fit score from 1 to 10 with a written justification and the skills it found.</p>
-          <div class="spec">
-            <div><b>1&ndash;10</b><span>match score with justification from the Gemini API</span></div>
-            <div><b>JSON</b><span>strict output: skills, experience, education</span></div>
-          </div>
-          <details class="more" open>
-            <summary>Key details</summary>
-            <ul>
-              <li>FastAPI service parses PDFs with PyPDF and stores candidates in SQLite.</li>
-              <li>Streamlit dashboard ranks shortlisted candidates by score.</li>
-            </ul>
-          </details>
-          <ul class="stack"><li>FastAPI</li><li>Gemini API</li><li>SQLAlchemy</li><li>Streamlit</li></ul>
-          <div class="links-row"><a href="https://github.com/Jayanth0000/smart-resume-screener" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
-        </article>
+        <article class="card wide" data-cat="ml web"><div style="display:grid;gap:14px;align-content:start"><div class="top"><h3>Smart Resume Screener</h3><span class="tag">LLM</span></div><p>Upload PDF resumes, paste a job description, and get a fit score from 1 to 10 with a written justification and the skills it found.</p><ul class="stack"><li>FastAPI</li><li>Gemini API</li><li>SQLAlchemy</li><li>Streamlit</li></ul></div><div style="display:grid;gap:14px"><div class="spec">
+<div><b>1–10</b><span>match score with justification from the Gemini API</span></div>
+<div><b>JSON</b><span>strict output: skills, experience, education</span></div>
+</div><details class="more" open="">
+<summary>Key details</summary>
+<ul>
+<li>FastAPI service parses PDFs with PyPDF and stores candidates in SQLite.</li>
+<li>Streamlit dashboard ranks shortlisted candidates by score.</li>
+</ul>
+</details><div class="links-row"><a href="https://github.com/Jayanth0000/smart-resume-screener" rel="noopener noreferrer" target="_blank">View code on GitHub →</a></div></div></article>
 
-        <article class="card" data-cat="devops">
-          <div class="top"><h3>CI/CD Pipeline Automation</h3><span class="tag">DevOps</span></div>
-          <p>A Jenkins pipeline that builds a Docker image of a five-page corporate site and deploys it to Kubernetes, with monitoring on top.</p>
-          <div class="spec">
-            <div><b>&lt;8 s</b><span>build time from clone to image</span></div>
-            <div><b>2</b><span>Kubernetes replicas behind a LoadBalancer</span></div>
-          </div>
-          <details class="more" open>
-            <summary>Key details</summary>
-            <ul>
-              <li>Site served from nginx:alpine, built and deployed automatically by Jenkins.</li>
-              <li>Nagios, Graphite and Grafana monitor the running deployment.</li>
-            </ul>
-          </details>
-          <ul class="stack"><li>Jenkins</li><li>Docker</li><li>Kubernetes</li><li>Nagios</li><li>Grafana</li></ul>
-          <div class="links-row"><a href="https://github.com/Jayanth0000/23BCE8392_Tippana_Jayanth_DevOps_Project" target="_blank" rel="noopener noreferrer">View code on GitHub &rarr;</a></div>
-        </article>
+        <article class="card wide" data-cat="devops"><div style="display:grid;gap:14px;align-content:start"><div class="top"><h3>CI/CD Pipeline Automation</h3><span class="tag">DevOps</span></div><p>A Jenkins pipeline that builds a Docker image of a five-page corporate site and deploys it to Kubernetes, with monitoring on top.</p><ul class="stack"><li>Jenkins</li><li>Docker</li><li>Kubernetes</li><li>Nagios</li><li>Grafana</li></ul></div><div style="display:grid;gap:14px"><div class="spec">
+<div><b>&lt;8 s</b><span>build time from clone to image</span></div>
+<div><b>2</b><span>Kubernetes replicas behind a LoadBalancer</span></div>
+</div><details class="more" open="">
+<summary>Key details</summary>
+<ul>
+<li>Site served from nginx:alpine, built and deployed automatically by Jenkins.</li>
+<li>Nagios, Graphite and Grafana monitor the running deployment.</li>
+</ul>
+</details><div class="links-row"><a href="https://github.com/Jayanth0000/23BCE8392_Tippana_Jayanth_DevOps_Project" rel="noopener noreferrer" target="_blank">View code on GitHub →</a></div></div></article>
         <article class="card featured" data-cat="web">
           <div>
             <div class="top"><h3>NextWatch</h3><span class="tag">Full-stack</span></div>
