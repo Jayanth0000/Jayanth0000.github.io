@@ -231,11 +231,11 @@ details.more li{margin:4px 0}
 .career h2{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-top:10px}
 .career p{color:var(--muted);font-size:1.08rem;margin:18px auto 0}
 .career .cta,.connect .cta{justify-content:center;margin-top:28px}
-.connect{background:linear-gradient(135deg,#2457d6,#17389a);color:#fff;border-radius:28px;padding:62px 32px;margin:0 0 84px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
-.connect::after{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:#fff;opacity:.08}
+.connect{background:linear-gradient(135deg,var(--accent-soft),color-mix(in srgb,var(--surface) 92%,transparent) 60%);color:var(--ink);border:1px solid var(--line);border-radius:28px;padding:62px 32px;margin:0 0 84px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.connect::after{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:var(--accent);opacity:.12;filter:blur(2px)}
 .connect h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800}
-.connect p{margin:16px auto 0;max-width:56ch;opacity:.92;font-size:1.05rem}
-.connect .reach{margin-top:22px;font-family:var(--mono);font-size:.85rem;opacity:.85}
+.connect p{margin:16px auto 0;max-width:56ch;color:var(--muted);font-size:1.05rem}
+.connect .reach{margin-top:22px;font-family:var(--mono);font-size:.85rem;color:var(--muted)}
 .connect .cta{position:relative;z-index:1}
 .btn.light{background:#fff;color:#17389a;border-color:#fff}
 .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
@@ -310,7 +310,7 @@ footer .soc svg{width:22px;height:22px}
     <div class="wrap">
       <div class="grid">
         <div>
-          <p class="status mono"><i aria-hidden="true"></i>Open to software engineering roles</p>
+          <p class="status mono"><i aria-hidden="true"></i>Open to AI/ML and software engineering roles</p>
           <h1>Tippana Jayanth <em>AI/ML Engineer &amp; Software Developer</em></h1>
           <p class="lead">Computer science undergraduate, AI/ML engineer and software developer. I build machine learning models and the software around them, from data pipelines and classifiers to REST APIs, React interfaces and containerized deployments, on a foundation of data structures, algorithms and clean, maintainable code.</p>
           <div class="cta">
@@ -534,10 +534,10 @@ footer .soc svg{width:22px;height:22px}
       <h2>Let's connect</h2>
       <p>I'm happy to hear from recruiters, engineers and anyone with an opportunity, a project idea, or a question about software, machine learning or DevOps. Email is the fastest way to reach me.</p>
       <div class="cta">
-        <button class="btn light" id="emailBtn" type="button"><span aria-hidden="true">&#9993;&#65039;</span> Email</button>
-        <a class="btn ghost" id="linkedinBtn" href="#" target="_blank" rel="noopener noreferrer" hidden><span aria-hidden="true">&#128188;</span> LinkedIn</a>
-        <a class="btn ghost" href="https://github.com/Jayanth0000" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&#128187;</span> GitHub</a>
-        <a class="btn ghost" id="leetcodeBtn" href="#" target="_blank" rel="noopener noreferrer" hidden><span aria-hidden="true">&#129513;</span> LeetCode</a>
+        <button class="btn primary" id="emailBtn" type="button"><span aria-hidden="true">&#9993;&#65039;</span> Email</button>
+        <a class="btn" id="linkedinBtn" href="#" target="_blank" rel="noopener noreferrer" hidden><span aria-hidden="true">&#128188;</span> LinkedIn</a>
+        <a class="btn" href="https://github.com/Jayanth0000" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&#128187;</span> GitHub</a>
+        <a class="btn" id="leetcodeBtn" href="#" target="_blank" rel="noopener noreferrer" hidden><span aria-hidden="true">&#129513;</span> LeetCode</a>
       </div>
       <p class="reach">jayanthtippana@gmail.com &middot; +91-9963192094</p>
     </section>
